@@ -1,0 +1,51 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>View Bill:</span>
+        <span class="spacer"></span>
+        <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+            <mat-icon>cancel</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+    <table id="customers">
+        <tr>
+            <td><b>Name:</b>{{data?.name}}</td>
+            <td><b>Email:</b>{{data?.email}}</td>
+        </tr>
+        <tr>
+            <td><b>Contact Number:</b>{{data?.contactNumber}}</td>
+            <td><b>Payment Method:</b>{{data?.paymentMethod}}</td>
+        </tr>
+    </table>
+
+    <div class="responsive_table">
+        <br>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <th mat-cell *matCellDef="let element"> {{element.name}} </th>
+            </ng-container>
+            <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef> Category </th>
+                <th mat-cell *matCellDef="let element"> {{element.category}} </th>
+            </ng-container>
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef> Price </th>
+                <th mat-cell *matCellDef="let element"> {{element.price}} </th>
+            </ng-container>
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                <th mat-cell *matCellDef="let element"> {{element.quantity}} </th>
+            </ng-container>
+            <ng-container matColumnDef="total">
+                <th mat-header-cell *matHeaderCellDef> Total </th>
+                <th mat-cell *matCellDef="let element"> {{element.total}} </th>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      
+    </div>
+</mat-dialog-content>

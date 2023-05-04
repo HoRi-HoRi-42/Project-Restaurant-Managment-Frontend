@@ -1,0 +1,56 @@
+<mat-card>
+    <b>
+        <span>View Bill</span>
+    </b>
+</mat-card>
+
+<hr>
+
+<mat-card>
+    <mat-form-field apparence="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+</mat-card>
+<hr>
+
+<div class="responsive_table">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-containter matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <th mat-cell *matCellDef="let element"> {{element.name}} </th>
+        </ng-containter>
+        <ng-containter matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <th mat-cell *matCellDef="let element"> {{element.email}} </th>
+        </ng-containter>
+        <ng-containter matColumnDef="contactNumber">
+            <th mat-header-cell *matHeaderCellDef> Contact Number </th>
+            <th mat-cell *matCellDef="let element"> {{element.contactNumber}} </th>
+        </ng-containter>
+        <ng-containter matColumnDef="paymentMethod">
+            <th mat-header-cell *matHeaderCellDef> Payment Method </th>
+            <th mat-cell *matCellDef="let element"> {{element.paymentMethod}} </th>
+        </ng-containter>
+        <ng-containter matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef> Total </th>
+            <th mat-cell *matCellDef="let element"> {{element.total}} </th>
+        </ng-containter>
+        <ng-containter matColumnDef="view">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <th mat-cell *matCellDef="let element" class="actoin-link">
+                <button mat-icon-button color="primary" matTooltip="View" (click)="handleViewAction(element)">
+                    <mat-icon>visibility</mat-icon>
+                </button>
+                <button mat-icon-button color="primary" matTooltip="Donwload Bill" (click)="donwloadReportAction(element)">
+                    <mat-icon>summarize</mat-icon>
+                </button>
+                <button mat-icon-button color="primary" matTooltip="Delete" (click)="handleDeleteAction(element)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </th>
+        </ng-containter>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
